@@ -51,7 +51,7 @@ for file in files:
 
     for i in range(iterations):
         if i == 0:
-            cmd = f"head -n 700 '{single_file}'"
+            cmd = f"head -n {limit} '{single_file}'"
             ps = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
             output = ps.communicate()[0].decode().split('\n')
             output.pop()
@@ -71,7 +71,7 @@ for file in files:
                     f.write(f'{e}\n')
 
         else:
-            cmd = f"tail -n {lines-offset} '{single_file}' | head -n 700"
+            cmd = f"tail -n {lines-offset} '{single_file}' | head -n {limit}"
             ps = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
             output = ps.communicate()[0].decode().split('\n')
             output.pop()
